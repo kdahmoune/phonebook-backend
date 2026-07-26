@@ -111,7 +111,11 @@ app.post('/api/persons/', (request, response, next) => {
 app.put('/api/persons/:id', (request, response, next) => {
   const body = request.body
 
-  People.findByIdAndUpdate(request.params.id, {name:body.name, number:body.number}, {returnDocument : 'after'})
+  People.findByIdAndUpdate(
+    request.params.id,
+    {name:body.name, number:body.number},
+    {returnDocument : 'after', runValidators: true, context: 'query'}
+  )
     .then(updatedPerson => {
       response.json(updatedPerson)
     })
