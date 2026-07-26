@@ -11,7 +11,7 @@ const url = `mongodb+srv://karimdahmoune_db_user:${password}@cluster0.kphtpb8.mo
 
 mongoose
     .connect(url)
-    .then(result => {
+    .then(_ => {
         const peopleSchema = new mongoose.Schema({
             name: {
                 type: String,
@@ -52,7 +52,7 @@ mongoose
             })
 
             people.save()
-            .then(result => {
+            .then(_ => {
                 console.log(`added ${name} number ${phone_number} to phonebook`)
                 mongoose.connection.close()
             })
